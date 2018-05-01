@@ -13,5 +13,5 @@ If you want to collaborate, report something or just hang out you can:
   
 ## Donations
 
-If you want to offer me a beer, you can donate something 
+If you want to offer to me a beer, you can donate something 
 <a href="https://www.paypal.com/donate/?token=HhxaPJ1HByZlA1XvtrSdmkryo3TR8JhBUN2yZe5iez7SQsJTm3RMINIe-6b_GBjqs0E_M0&country.x=IT&locale.x=IT" target="_blank">via Paypal</a>

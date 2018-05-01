@@ -1,6 +1,6 @@
 {
   "name": "optc-calendar",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -9,6 +9,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
+  },
+  "engines": {
+    "node": "9.8.0"
   },
   "private": true,
   "dependencies": {
