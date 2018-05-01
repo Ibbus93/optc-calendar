@@ -1,27 +1,17 @@
-# OptcCalendar
+# Optc Calendar
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
+After a long time, Optc Calendar born again with new important features and
+a new way to live the game!
 
-## Development server
+## Contacts
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+If you want to collaborate, report something or just hang out you can:
+  * PM me on <a href="http://t.me/ibbus" target="_blank">Telegram</a>
+  * Send me a <a href="mailto:ibbus93@gmail.com" target="_blank">mail</a>
+  * Join our <a href="https://discord.gg/7NJQ6zx" target="_blank">Discord group
+  * Join our <a href="https://t.me/joinchat/DNmGCFDYkGx-2RdbDmUF7g" target="_blank">Telegram group
+  
+## Donations
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+If you want to offer me a beer, you can donate something 
+<a href="https://www.paypal.com/donate/?token=HhxaPJ1HByZlA1XvtrSdmkryo3TR8JhBUN2yZe5iez7SQsJTm3RMINIe-6b_GBjqs0E_M0&country.x=IT&locale.x=IT" target="_blank">via Paypal</a>
