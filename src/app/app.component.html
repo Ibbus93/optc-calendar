@@ -1,20 +1,88 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-blue">
+    <a class="navbar-brand" href="#">Japan Calendar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Settings</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="utilities" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            Utilities
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="https://optc-db.github.io" target="_blank">OPTC-DB</a>
+            <a class="dropdown-item" href="https://optctm.github.io/">Treasure Map Calculator</a>
+            <a class="dropdown-item" href="https://nakama.network">Nakama Network</a>
+            <a class="dropdown-item" href="https://www.reddit.com/r/OnePieceTC/wiki/index" target="_blank">Reddit Wikia</a>
+            <a class="dropdown-item" href="https://www.reddit.com/r/OnePieceTC/wiki/guides/reroll" target="_blank">Reroll guide</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="communities" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            Communities
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="https://www.reddit.com/r/OnePieceTC/" target="_blank">Reddit OPTC</a>
+            <a class="dropdown-item" href="https://optci-team.forumfree.it/" target="_blank">OPTC IT Forum</a>
+            <a class="dropdown-item" href="https://www.facebook.com/groups/274290406317485/">IT FB Group - Road To Raftel</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="youtubers" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            Youtubers
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="https://www.youtube.com/user/Zeen09"                      target="_blank">Zeenigami</a>
+            <a class="dropdown-item" href="https://www.youtube.com/channel/UC47Srx41PDdJALwfglLQUfw" target="_blank">OryonTM</a>
+            <a class="dropdown-item" href="https://www.youtube.com/user/LindirsCube"                 target="_blank">7 Days</a>
+            <a class="dropdown-item" href="https://www.youtube.com/channel/UCjzTdyI3njpGVHfqqfiS3sw" target="_blank">The Cula</a>
+            <a class="dropdown-item" href="https://www.youtube.com/channel/UCAKEntsC0G_aA-xoM0YRPqg" target="_blank">OPTC Tavern</a>
+            <a class="dropdown-item" href="https://www.youtube.com/channel/UCZVk6QSgFb-wuzBHTrU-7Ag" target="_blank">Ludus Channel</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="streamers" data-toggle="dropdown"
+             aria-haspopup="true" aria-expanded="false">
+            Streamers
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="https://www.twitch.tv/zeenigami" target="_blank">Zeenigami</a>
+            <a class="dropdown-item" href="https://www.twitch.tv/brodri4" target="_blank">Boris</a>
+            <a class="dropdown-item" href="https://www.twitch.tv/sekapoko" target="_blank">Sekapoco</a>
+            <a class="dropdown-item" href="https://www.twitch.tv/sleftyy" target="_blank">Sleftyy</a>
+            <a class="dropdown-item" href="https://www.twitch.tv/asianguystream" target="_blank">Asian Guys Stream</a>
+            <a class="dropdown-item" href="https://www.twitch.tv/maniakk1" target="_blank">Maniakk1</a>
+            <a class="dropdown-item" href="https://www.twitch.tv/ittoryu_style" target="_blank">Ittoryu_style</a>
+            <a class="dropdown-item" href="https://www.twitch.tv/hellawolf" target="_blank">Hellawolf</a>
+            <a class="dropdown-item" href="https://www.twitch.tv/kouteikaizer" target="_blank">Kouteikaizer</a>
+            <a class="dropdown-item" href="https://www.twitch.tv/lanadsl" target="_blank">Lanadsl</a>
+          </div>
+        </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Support</a>
+    </li>
+    </ul>
+    </div>
+  </nav>
+</header>
 
+<section>
+  <div class="container text-center">
+    <h1>May 2018</h1>
+    <h2>Clock</h2>
+    <h3><span class="glyphicon glyphicon-chevron-left"></span>Daily mode <span class="glyphicon glyphicon-chevron-right"></span></h3>
+  </div>
+
+
+</section>
