@@ -8,8 +8,8 @@ a new way to live the game!
 If you want to collaborate, report something or just hang out you can:
   * PM me on <a href="http://t.me/ibbus" target="_blank">Telegram</a>
   * Send me a <a href="mailto:ibbus93@gmail.com" target="_blank">mail</a>
-  * Join our <a href="https://discord.gg/7NJQ6zx" target="_blank">Discord group
-  * Join our <a href="https://t.me/joinchat/DNmGCFDYkGx-2RdbDmUF7g" target="_blank">Telegram group
+  * Join our <a href="https://discord.gg/7NJQ6zx" target="_blank">Discord group</a>
+  * Join our <a href="https://t.me/joinchat/DNmGCFDYkGx-2RdbDmUF7g" target="_blank">Telegram group</a>
   
 ## Donations
 
