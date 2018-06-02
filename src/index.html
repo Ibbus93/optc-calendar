@@ -2,13 +2,102 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>OptcCalendar</title>
+  <title>Optc Calendar</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-blue">
+      <a class="navbar-brand" href="#">Japan Calendar</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Settings</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="utilities" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+              Utilities
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="https://optc-db.github.io" target="_blank">OPTC-DB</a>
+              <a class="dropdown-item" href="https://optctm.github.io/">Treasure Map Calculator</a>
+              <a class="dropdown-item" href="https://nakama.network">Nakama Network</a>
+              <a class="dropdown-item" href="https://www.reddit.com/r/OnePieceTC/wiki/index" target="_blank">Reddit Wikia</a>
+              <a class="dropdown-item" href="https://www.reddit.com/r/OnePieceTC/wiki/guides/reroll" target="_blank">Reroll guide</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="communities" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+              Communities
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="https://www.reddit.com/r/OnePieceTC/" target="_blank">Reddit OPTC</a>
+              <a class="dropdown-item" href="https://optci-team.forumfree.it/" target="_blank">OPTC IT Forum</a>
+              <a class="dropdown-item" href="https://www.facebook.com/groups/274290406317485/">IT FB Group - Road To Raftel</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="youtubers" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+              Youtubers
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="https://www.youtube.com/user/Zeen09"                      target="_blank">Zeenigami</a>
+              <a class="dropdown-item" href="https://www.youtube.com/channel/UC47Srx41PDdJALwfglLQUfw" target="_blank">OryonTM</a>
+              <a class="dropdown-item" href="https://www.youtube.com/user/LindirsCube"                 target="_blank">7 Days</a>
+              <a class="dropdown-item" href="https://www.youtube.com/channel/UCjzTdyI3njpGVHfqqfiS3sw" target="_blank">The Cula</a>
+              <a class="dropdown-item" href="https://www.youtube.com/channel/UCAKEntsC0G_aA-xoM0YRPqg" target="_blank">OPTC Tavern</a>
+              <a class="dropdown-item" href="https://www.youtube.com/channel/UCZVk6QSgFb-wuzBHTrU-7Ag" target="_blank">Ludus Channel</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="streamers" data-toggle="dropdown"
+               aria-haspopup="true" aria-expanded="false">
+              Streamers
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="https://www.twitch.tv/zeenigami" target="_blank">Zeenigami</a>
+              <a class="dropdown-item" href="https://www.twitch.tv/brodri4" target="_blank">Boris</a>
+              <a class="dropdown-item" href="https://www.twitch.tv/sekapoko" target="_blank">Sekapoco</a>
+              <a class="dropdown-item" href="https://www.twitch.tv/sleftyy" target="_blank">Sleftyy</a>
+              <a class="dropdown-item" href="https://www.twitch.tv/asianguystream" target="_blank">Asian Guys Stream</a>
+              <a class="dropdown-item" href="https://www.twitch.tv/maniakk1" target="_blank">Maniakk1</a>
+              <a class="dropdown-item" href="https://www.twitch.tv/ittoryu_style" target="_blank">Ittoryu_style</a>
+              <a class="dropdown-item" href="https://www.twitch.tv/hellawolf" target="_blank">Hellawolf</a>
+              <a class="dropdown-item" href="https://www.twitch.tv/kouteikaizer" target="_blank">Kouteikaizer</a>
+              <a class="dropdown-item" href="https://www.twitch.tv/lanadsl" target="_blank">Lanadsl</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Support</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
   <app-root></app-root>
+
+<!--  <script src="/socket.io/socket.io.js"></script>
+
+  <script>
+    var socket = io();
+    console.log(socket);
+    socket.on('datetime', function (data) {
+      $("#clock").text(data);
+    });
+
+  </script>-->
 </body>
 </html>

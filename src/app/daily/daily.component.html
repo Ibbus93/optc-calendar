@@ -1,0 +1,48 @@
+<article>
+  <div class="container text-center">
+    <h1>
+      <i class="fa fa-caret-left"></i>
+      {{ today.monthText }} {{ today.day }} {{ today.year }}
+      <i class="fa fa-caret-right"></i>
+    </h1>
+    <h2 id="clock">{{ time }}</h2>
+    <h3> Daily mode</h3>
+  </div>
+
+  <section class="container bg-blue">
+    <div class="row">
+      <h3 class="bg-primary">Fortnight</h3>
+      <div class="row" *ngIf="asd$ | async as result">
+        <div class="col-md-12" *ngFor="let fn of result">
+          <img src="{{fn.tiny_image}}" alt="tiny Image">
+          <h4>{{ fn.title }}</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3 class="bg-primary">Raid</h3>
+      <div class="col-md-12">
+        <h4>Titolo Raid 1</h4>
+      </div>
+      <div class="col-md-12">
+        <h4>Titolo Raid 2</h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <h3 class="bg-primary">Colosseum</h3>
+      <div class="col-md-12">
+        <h4>Titolo Colosseum 1</h4>
+      </div>
+      <div class="col-md-12">
+        <h4>Titolo Colosseum 2</h4>
+      </div>
+    </div>
+  </section>
+
+</article>
+
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>-->
+
+
