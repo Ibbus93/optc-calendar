@@ -11,11 +11,48 @@
 
   <section class="container bg-blue">
     <div class="row">
-      <h3 class="bg-primary">Fortnight</h3>
-      <div class="row" *ngIf="asd$ | async as result">
-        <div class="col-md-12" *ngFor="let fn of result">
-          <img src="{{fn.tiny_image}}" alt="tiny Image">
-          <h4>{{ fn.title }}</h4>
+      <h3 class="bg-primary" style="padding: 1%;">Fortnight</h3>
+
+
+      <div class="row" *ngIf="schedule$ as result">
+
+        <div *ngFor="let fn of fortnights$; let i = index" class="col-md-12 col-sm-12 col-12" style="margin: 2% 0">
+
+          <!--<div *ngIf="images$[i] as portrait">-->
+            <img [src]="fn.tinyImg" alt="tiny Image" class="col-md-2 col-sm-2 col-3 img-fluid">
+          <!--</div>-->
+
+          <div class="col-md-10 col-sm-10 col-9" style="float: right; margin-bottom: 20px">
+            
+            <h4 class="">{{ fn.title }}</h4>
+
+            <p *ngIf="fn.conditions != 'NULL'; else other_content" class="text-justify">{{ fn.conditions }}</p>
+            <ng-template #other_content>
+              <p class="text-justify">No conditions available for this fortnight.</p>
+            </ng-template>
+
+            <!--<h1>{{imageUrl(fn.drops[0])}}</h1>-->
+            <div *ngIf="fn.drops.length > 0" class="col-md-12" style="float: left">
+              <h5>Drops</h5>
+              <div *ngFor="let drop of fn.drops">
+                <!--<div [style.background-image]="imageUrl(drop)" class="inline image-div" style=""></div>-->
+                <a href="http://optc-db.github.io/characters/#/view/{{drop}}">
+                  <img [src]="imageUrl(drop)" alt="drop id {{drop}}" class="inline image-div">
+                </a>
+              </div>
+            </div>
+
+            <div *ngIf="fn.books != NULL" class="col-md-12" style="float: left">
+              <h5>Books</h5>
+              <div *ngFor="let book of fn.books">
+                <a href="http://optc-db.github.io/characters/#/view/{{book.charact}}">
+                  <img [src]="imageUrl(book.charact)" alt="book id {{book.charact}}" class="inline image-div">
+                </a>
+              </div>
+            </div>
+
+          </div>
+          <hr/>
         </div>
       </div>
     </div>

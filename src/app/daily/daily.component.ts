@@ -10,6 +10,9 @@ import {FnSchedule} from './models/Schedules';
 import {Fortnight} from './models/Fortnight';
 import {Observable} from 'rxjs/Observable';
 
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import {Image} from './models/Image';
+
 @Component({
   selector: 'app-daily',
   templateUrl: './daily.component.html',
@@ -17,15 +20,56 @@ import {Observable} from 'rxjs/Observable';
 })
 export class DailyComponent implements OnInit {
   today: ModelDate;
-  schedule: FnSchedule[];
-  public fort$: Fortnight[] = [];
-  public asd$: Observable<any>;
+  // public schedule$: Observable<any>;
+  public schedule$: FnSchedule[];
+  public fortnights$: Fortnight[] = [];
+  public images$: Image[] = [];
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) {
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router, private _sanitizer: DomSanitizer) {
     this.today = new ModelDate(new Date());
-    this.asd$ = http.get<FnSchedule[]>('https://optc-api.herokuapp.com/api/jap_schedule/fn/2018-05-04').pipe(share());//+ this.today.year + '-' + this.today.monthN + '-' + this.today.day)
+
+    http.get<FnSchedule[]>('https://optc-api.herokuapp.com/api/jap_schedule/fn/2018-05-04')
+      .subscribe(schedule => {
+        this.schedule$ = schedule;
+
+        schedule.forEach(fn => {
+          http.get<Fortnight>('https://optc-api.herokuapp.com/api/fortnight/' + fn.fortnight)
+            .subscribe(fn_data => {
+              this.fortnights$.push(fn_data);
+            });
+        });
+      });
   }
 
   ngOnInit() {
+  }
+
+  imageUrl(id) : SafeUrl{
+    let url = 'https://onepiece-treasurecruise.com/wp-content/uploads/';
+
+    switch (id.toString().length) {
+      case 1:
+        return this._sanitizer.bypassSecurityTrustUrl(url + "f000" + id + ".png");
+      case 2:
+        return this._sanitizer.bypassSecurityTrustUrl(url + "f00" + id + ".png");
+      case 3:
+        return this._sanitizer.bypassSecurityTrustUrl(url + "f0" + id + ".png");
+      case 4:
+        return this._sanitizer.bypassSecurityTrustUrl(url + "f" + id + ".png");
+            // return url + "f" + id + ".png";
+    }
+  }
+
+  async idToImagePath(id: number) {
+    let response;
+
+    try {
+      await this.http.get('https://optc-api.herokuapp.com/api/images/' + id)
+        .subscribe(value => response = value)
+    }catch(err) {
+      console.log(err);
+    }
+
+    return response.path;
   }
 }
