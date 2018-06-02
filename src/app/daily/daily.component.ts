@@ -11,7 +11,6 @@ import {Fortnight} from './models/Fortnight';
 import {Observable} from 'rxjs/Observable';
 
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
-import {Image} from './models/Image';
 
 @Component({
   selector: 'app-daily',
@@ -23,7 +22,6 @@ export class DailyComponent implements OnInit {
   // public schedule$: Observable<any>;
   public schedule$: FnSchedule[];
   public fortnights$: Fortnight[] = [];
-  public images$: Image[] = [];
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router, private _sanitizer: DomSanitizer) {
     this.today = new ModelDate(new Date());
