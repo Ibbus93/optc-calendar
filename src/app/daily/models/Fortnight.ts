@@ -9,8 +9,6 @@ export class Fortnight {
   books: FnBook[];
   drops: number[];
   bonus: number;
-
-  setBonus(bon: number){
-    this.bonus = bon;
-  }
+  data_begin: any;
+  data_end: any;
 }

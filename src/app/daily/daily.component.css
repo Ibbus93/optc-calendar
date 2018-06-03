@@ -21,8 +21,17 @@ hr {
   clear: both;
   padding-left: 16px;
   border-top: 2px solid;
+  display: block;
 }
 
 .btn {
   white-space: normal!important;
+}
+
+#fn-row hr:last-of-type {
+  display: none;
+}
+
+.fa.fa-caret-right:hover, .fa.fa-caret-left:hover {
+  color: red;
 }

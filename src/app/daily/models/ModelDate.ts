@@ -42,4 +42,8 @@ export class ModelDate {
         return 'December';
     }
   }
+
+  toString() : string {
+    return this.year + '-' + this.monthN + '-' + this.day;
+  }
 }

@@ -26,7 +26,8 @@
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",
         "../node_modules/bootstrap/dist/js/bootstrap.js",
-        "../src/assets/clock.js"
+        "../src/assets/clock.js",
+        "../src/assets/nakama.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

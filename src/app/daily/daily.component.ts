@@ -19,29 +19,11 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browse
 })
 export class DailyComponent implements OnInit {
   today: ModelDate;
-  // public schedule$: Observable<any>;
   public schedule$: FnSchedule[];
-  public fortnights$: Fortnight[] = [];
+  public fortnights$: Fortnight[];
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router, private _sanitizer: DomSanitizer) {
-    this.today = new ModelDate(new Date());
-
-    http.get<FnSchedule[]>('https://optc-api.herokuapp.com/api/jap_schedule/fn/2018-05-04')
-      .subscribe(schedule => {
-        this.schedule$ = schedule;
-
-
-        schedule.forEach(fn => {
-          console.log(fn.bonus);
-          http.get<Fortnight>('https://optc-api.herokuapp.com/api/fortnight/' + fn.fortnight)
-            .subscribe(fn_data => {
-              fn_data.bonus = fn.bonus;
-              // let thingtopush = fn_data;
-              // thingtopush.setBonus(fn.bonus);
-              this.fortnights$.push(fn_data);
-            });
-        });
-      });
+    this.startup(new Date());
   }
 
   ngOnInit() {
@@ -63,16 +45,41 @@ export class DailyComponent implements OnInit {
     }
   }
 
-  async idToImagePath(id: number) {
-    let response;
+  goToDay(type: number){
 
-    try {
-      await this.http.get('https://optc-api.herokuapp.com/api/images/' + id)
-        .subscribe(value => response = value)
-    }catch(err) {
-      console.log(err);
+    if(type === -1){
+      this.startup(new Date(this.today.date.getTime() - (86400*1000)));
     }
+    else {
+      this.startup(new Date(this.today.date.getTime() + (86400*1000)));
+    }
+  }
 
-    return response.path;
+  startup(date: Date) {
+    this.today = new ModelDate(date);
+    this.fortnights$ = [];
+
+    console.log(this.today.toString());
+    this.http.get<FnSchedule[]>('https://optc-api.herokuapp.com/api/jap_schedule/fn/' + this.today.toString())
+      .subscribe(schedule => {
+        this.schedule$ = schedule;
+
+        schedule.forEach(fn => {
+          this.http.get<Fortnight>('https://optc-api.herokuapp.com/api/fortnight/' + fn.fortnight)
+            .subscribe(fn_data => {
+              fn_data.bonus = fn.bonus;
+              fn_data.data_begin = fn.data_begin;
+              this.fortnights$.push(fn_data);
+            });
+        });
+      });
+  }
+
+  nakamaFnLink(title: string) : SafeUrl {
+    // let optcdb_json = window.drops.Fortnight;
+    let linkNakama = null;
+    let jjj = false;
+
+    return this._sanitizer.bypassSecurityTrustUrl(linkNakama);
   }
 }

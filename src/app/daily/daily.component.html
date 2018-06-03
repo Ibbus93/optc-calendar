@@ -1,9 +1,9 @@
 <article>
   <div class="container text-center">
     <h1>
-      <i class="fa fa-caret-left"></i>
+      <i class="fa fa-caret-left" (click)="goToDay(-1)"></i>
       {{ today.monthText }} {{ today.day }} {{ today.year }}
-      <i class="fa fa-caret-right"></i>
+      <i class="fa fa-caret-right" (click)="goToDay(1)"></i>
     </h1>
     <h2 id="clock"></h2>
     <h3> Daily mode</h3>
@@ -13,13 +13,13 @@
     <div class="row">
       <h3 class="bg-primary" style="padding: 1%;">Fortnight</h3>
 
+      <div class="row" *ngIf="schedule$ as result" id="fn-row">
 
-      <div class="row" *ngIf="schedule$ as result">
+        <div *ngFor="let fn of fortnights$" class="col-md-12 col-sm-12 col-12" id="fortnight-list" style="margin: 2% 0">
 
-        <div *ngFor="let fn of fortnights$; let i = index" class="col-md-12 col-sm-12 col-12" style="margin: 2% 0">
-
-          <div class="col-md-2 col-sm-2 col-3" style="float: left">
+          <div class="col-md-2 col-sm-2 col-3" style="float: left; text-align: center">
             <img [src]="fn.tinyImg" alt="tiny Image" class="img-fluid">
+            <p>{{fn.data_begin}}</p>
 
             <div [ngSwitch]="fn.bonus" style="margin-bottom: 10px">
               <div *ngSwitchCase="1">
@@ -36,8 +36,9 @@
               </div>
             </div>
 
-            <button class="btn btn-outline-light">Nakama Network</button>
-            <!--<p>{{fn.bonus}}</p>-->
+            <!--<a [id]="fn.id">-->
+              <!--<button class="btn btn-outline-light" (click)="linkingNakama(fn.title)">Nakama Network</button>-->
+            <!--</a>-->
 
           </div>
 
@@ -50,12 +51,10 @@
               <p class="text-justify">No conditions available for this fortnight.</p>
             </ng-template>
 
-            <!--<h1>{{imageUrl(fn.drops[0])}}</h1>-->
             <div *ngIf="fn.drops.length > 0" class="col-md-12" style="float: left">
               <h5>Drops</h5>
               <div *ngFor="let drop of fn.drops">
-                <!--<div [style.background-image]="imageUrl(drop)" class="inline image-div" style=""></div>-->
-                <a href="http://optc-db.github.io/characters/#/view/{{drop}}">
+                <a href="http://optc-db.github.io/characters/#/view/{{drop}}" target="_blank">
                   <img [src]="imageUrl(drop)" alt="drop id {{drop}}" class="inline image-div">
                 </a>
               </div>
@@ -64,14 +63,15 @@
             <div *ngIf="fn.books != NULL" class="col-md-12" style="float: left">
               <h5>Books</h5>
               <div *ngFor="let book of fn.books">
-                <a *ngIf="book.only_jap === book.only_global || book.only_jap === 1" href="http://optc-db.github.io/characters/#/view/{{book.charact}}">
+                <a *ngIf="book.only_jap === book.only_global || book.only_jap === 1"
+                   href="http://optc-db.github.io/characters/#/view/{{book.charact}}" target="_blank">
                   <img [src]="imageUrl(book.charact)" alt="book id {{book.charact}}" class="inline image-div">
                 </a>
               </div>
             </div>
 
           </div>
-          <hr/>
+          <!--<hr/>-->
         </div>
       </div>
     </div>
