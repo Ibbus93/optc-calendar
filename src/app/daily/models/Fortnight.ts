@@ -8,4 +8,9 @@ export class Fortnight {
   bigImg: string;
   books: FnBook[];
   drops: number[];
+  bonus: number;
+
+  setBonus(bon: number){
+    this.bonus = bon;
+  }
 }

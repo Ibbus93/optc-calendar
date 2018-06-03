@@ -6,7 +6,7 @@ img.inline {
   background-size: contain;
   display: block;
   max-width: 64px;
-  max-height: 70px;
+  max-height: 64px;
   width: 80px;
   height: 80px;
 }
@@ -21,4 +21,8 @@ hr {
   clear: both;
   padding-left: 16px;
   border-top: 2px solid;
+}
+
+.btn {
+  white-space: normal!important;
 }

@@ -30,9 +30,14 @@ export class DailyComponent implements OnInit {
       .subscribe(schedule => {
         this.schedule$ = schedule;
 
+
         schedule.forEach(fn => {
+          console.log(fn.bonus);
           http.get<Fortnight>('https://optc-api.herokuapp.com/api/fortnight/' + fn.fortnight)
             .subscribe(fn_data => {
+              fn_data.bonus = fn.bonus;
+              // let thingtopush = fn_data;
+              // thingtopush.setBonus(fn.bonus);
               this.fortnights$.push(fn_data);
             });
         });

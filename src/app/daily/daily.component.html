@@ -18,9 +18,28 @@
 
         <div *ngFor="let fn of fortnights$; let i = index" class="col-md-12 col-sm-12 col-12" style="margin: 2% 0">
 
-          <!--<div *ngIf="images$[i] as portrait">-->
-            <img [src]="fn.tinyImg" alt="tiny Image" class="col-md-2 col-sm-2 col-3 img-fluid">
-          <!--</div>-->
+          <div class="col-md-2 col-sm-2 col-3" style="float: left">
+            <img [src]="fn.tinyImg" alt="tiny Image" class="img-fluid">
+
+            <div [ngSwitch]="fn.bonus" style="margin-bottom: 10px">
+              <div *ngSwitchCase="1">
+                <img src="assets/images/special/dropX2.png" alt="drop x2" class="img-fluid">
+              </div>
+              <div *ngSwitchCase="2">
+                <img src="assets/images/special/expX2.png" alt="exp x2" class="img-fluid">
+              </div>
+              <div *ngSwitchCase="3">
+                <img src="assets/images/special/stax0.5.png" alt="sta x0.5" class="img-fluid">
+              </div>
+              <div *ngSwitchCase="4">
+                <img src="assets/images/special/berriesx2.png" alt="berries x2" class="img-fluid">
+              </div>
+            </div>
+
+            <button class="btn btn-outline-light">Nakama Network</button>
+            <!--<p>{{fn.bonus}}</p>-->
+
+          </div>
 
           <div class="col-md-10 col-sm-10 col-9" style="float: right; margin-bottom: 20px">
 
@@ -45,7 +64,7 @@
             <div *ngIf="fn.books != NULL" class="col-md-12" style="float: left">
               <h5>Books</h5>
               <div *ngFor="let book of fn.books">
-                <a href="http://optc-db.github.io/characters/#/view/{{book.charact}}">
+                <a *ngIf="book.only_jap === book.only_global || book.only_jap === 1" href="http://optc-db.github.io/characters/#/view/{{book.charact}}">
                   <img [src]="imageUrl(book.charact)" alt="book id {{book.charact}}" class="inline image-div">
                 </a>
               </div>
