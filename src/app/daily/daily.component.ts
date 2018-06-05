@@ -29,7 +29,7 @@ export class DailyComponent implements OnInit {
   ngOnInit() {
   }
 
-  imageUrl(id) : SafeUrl{
+  imageUrl(id): SafeUrl {
     let url = 'https://onepiece-treasurecruise.com/wp-content/uploads/';
 
     switch (id.toString().length) {
@@ -45,9 +45,9 @@ export class DailyComponent implements OnInit {
     }
   }
 
-  goToDay(type: number){
+  goToDay(type: number) {
 
-    if(type === -1){
+    if(type === -1) {
       this.startup(new Date(this.today.date.getTime() - (86400*1000)));
     }
     else {
@@ -68,14 +68,25 @@ export class DailyComponent implements OnInit {
           this.http.get<Fortnight>('https://optc-api.herokuapp.com/api/fortnight/' + fn.fortnight)
             .subscribe(fn_data => {
               fn_data.bonus = fn.bonus;
-              fn_data.data_begin = fn.data_begin;
+              let data_tbegin = new Date(fn.data_begin);
+              let data_tend = new Date(fn.data_end);
+
+              if(data_tbegin.getDay() === this.today.day && this.today.monthN === data_tbegin.getMonth()) {
+                fn_data.data_begin = 'begins at ' + data_tbegin.getHours() + ':' + data_tbegin.getMinutes();
+              }
+
+              if(data_tend.getDay() === this.today.day && this.today.monthN === data_tend.getMonth()) {
+                fn_data.data_tend = 'ends at ' + data_tend.getHours() + ':' + data_tend.getMinutes();
+              }
+
+              // fn_data.data_begin = fn.data_begin;
               this.fortnights$.push(fn_data);
             });
         });
       });
   }
 
-  nakamaFnLink(title: string) : SafeUrl {
+  nakamaFnLink(title: string): SafeUrl {
     // let optcdb_json = window.drops.Fortnight;
     let linkNakama = null;
     let jjj = false;
