@@ -71,7 +71,7 @@ export class DailyComponent implements OnInit {
               let data_tend = new Date(fn.data_end);
 
               if(data_tbegin.getDay() == this.today.getDay() && (this.today.monthN == (data_tbegin.getMonth()+1))) {
-                fn_data.data_begin = 'begins at ' + data_tbegin.getHours() + ':' + data_tbegin.getMinutes();
+                fn_data.data_begin = 'Starts at ' + data_tbegin.getHours() + ':' + data_tbegin.getMinutes();
               }
 
               if(data_tend.getDay() == this.today.getDay() && (this.today.monthN == (data_tend.getMonth()+1))) {
