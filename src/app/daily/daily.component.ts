@@ -76,7 +76,7 @@ export class DailyComponent implements OnInit {
               }
 
               if(data_tend.getDay() === this.today.day && this.today.monthN === data_tend.getMonth()) {
-                fn_data.data_tend = 'ends at ' + data_tend.getHours() + ':' + data_tend.getMinutes();
+                fn_data.data_end = 'ends at ' + data_tend.getHours() + ':' + data_tend.getMinutes();
               }
 
               // fn_data.data_begin = fn.data_begin;
