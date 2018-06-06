@@ -46,4 +46,8 @@ export class ModelDate {
   toString() : string {
     return this.year + '-' + this.monthN + '-' + this.day;
   }
+
+  getDay(): number {
+    return this.date.getDay();
+  }
 }

@@ -56,10 +56,9 @@ export class DailyComponent implements OnInit {
   }
 
   startup(date: Date) {
-    this.today = new ModelDate(date);
+    this.today = new ModelDate(date); // non si sta aggiornando
     this.fortnights$ = [];
 
-    console.log(this.today.toString());
     this.http.get<FnSchedule[]>('https://optc-api.herokuapp.com/api/jap_schedule/fn/' + this.today.toString())
       .subscribe(schedule => {
         this.schedule$ = schedule;
@@ -71,12 +70,12 @@ export class DailyComponent implements OnInit {
               let data_tbegin = new Date(fn.data_begin);
               let data_tend = new Date(fn.data_end);
 
-              if(data_tbegin.getDay() === this.today.day && this.today.monthN === data_tbegin.getMonth()) {
+              if(data_tbegin.getDay() == this.today.getDay() && (this.today.monthN == (data_tbegin.getMonth()+1))) {
                 fn_data.data_begin = 'begins at ' + data_tbegin.getHours() + ':' + data_tbegin.getMinutes();
               }
 
-              if(data_tend.getDay() === this.today.day && this.today.monthN === data_tend.getMonth()) {
-                fn_data.data_end = 'ends at ' + data_tend.getHours() + ':' + data_tend.getMinutes();
+              if(data_tend.getDay() == this.today.getDay() && (this.today.monthN == (data_tend.getMonth()+1))) {
+                fn_data.data_end = 'Ends at ' + data_tend.getHours() + ':' + data_tend.getMinutes();
               }
 
               // fn_data.data_begin = fn.data_begin;

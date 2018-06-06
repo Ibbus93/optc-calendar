@@ -19,7 +19,14 @@
 
           <div class="col-md-2 col-sm-2 col-3" style="float: left; text-align: center">
             <img [src]="fn.tinyImg" alt="tiny Image" class="img-fluid">
-            <p>{{fn.data_begin}}</p>
+
+            <div *ngIf="fn.data_begin" class="bg-success custom-alert font-weight-bold text-white"> <!-- custom-alert alert-danger -->
+              {{fn.data_begin}}
+            </div>
+
+            <div *ngIf="fn.data_end" class="bg-danger custom-alert font-weight-bold text-white"> <!-- custom-alert alert-danger -->
+              {{fn.data_end}}
+            </div>
 
             <div [ngSwitch]="fn.bonus" style="margin-bottom: 10px">
               <div *ngSwitchCase="1">

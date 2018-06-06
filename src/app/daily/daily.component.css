@@ -35,3 +35,19 @@ hr {
 .fa.fa-caret-right:hover, .fa.fa-caret-left:hover {
   color: red;
 }
+
+.custom-alert {
+  position: relative;
+  padding: 10px;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
+
+section.container h4, section.container h5 {
+  color: #FFA500;
+}
+
+section.container p {
+  color: white;
+}
