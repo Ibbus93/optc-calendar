@@ -34,24 +34,23 @@ export class DailyComponent implements OnInit {
 
     switch (id.toString().length) {
       case 1:
-        return this._sanitizer.bypassSecurityTrustUrl(url + "f000" + id + ".png");
+        return this._sanitizer.bypassSecurityTrustUrl(url + 'f000' + id + '.png');
       case 2:
-        return this._sanitizer.bypassSecurityTrustUrl(url + "f00" + id + ".png");
+        return this._sanitizer.bypassSecurityTrustUrl(url + 'f00' + id + '.png');
       case 3:
-        return this._sanitizer.bypassSecurityTrustUrl(url + "f0" + id + ".png");
+        return this._sanitizer.bypassSecurityTrustUrl(url + 'f0' + id + '.png');
       case 4:
-        return this._sanitizer.bypassSecurityTrustUrl(url + "f" + id + ".png");
+        return this._sanitizer.bypassSecurityTrustUrl(url + 'f' + id + '.png');
             // return url + "f" + id + ".png";
     }
   }
 
   goToDay(type: number) {
 
-    if(type === -1) {
-      this.startup(new Date(this.today.date.getTime() - (86400*1000)));
-    }
-    else {
-      this.startup(new Date(this.today.date.getTime() + (86400*1000)));
+    if (type === -1) {
+      this.startup(new Date(this.today.date.getTime() - (86400 * 1000)));
+    } else {
+      this.startup(new Date(this.today.date.getTime() + (86400 * 1000)));
     }
   }
 
@@ -70,11 +69,11 @@ export class DailyComponent implements OnInit {
               let data_tbegin = new Date(fn.data_begin);
               let data_tend = new Date(fn.data_end);
 
-              if(data_tbegin.getDay() == this.today.getDay() && (this.today.monthN == (data_tbegin.getMonth()+1))) {
+              if (data_tbegin.getDay() === this.today.getDay() && (this.today.monthN === (data_tbegin.getMonth() + 1))) {
                 fn_data.data_begin = 'Starts at ' + data_tbegin.getHours() + ':' + data_tbegin.getMinutes();
               }
 
-              if(data_tend.getDay() == this.today.getDay() && (this.today.monthN == (data_tend.getMonth()+1))) {
+              if (data_tend.getDay() === this.today.getDay() && (this.today.monthN === (data_tend.getMonth() + 1))) {
                 fn_data.data_end = 'Ends at ' + data_tend.getHours() + ':' + data_tend.getMinutes();
               }
 
@@ -88,7 +87,7 @@ export class DailyComponent implements OnInit {
   nakamaFnLink(title: string): SafeUrl {
     // let optcdb_json = window.drops.Fortnight;
     let linkNakama = null;
-    let jjj = false;
+    // let jjj = false;
 
     return this._sanitizer.bypassSecurityTrustUrl(linkNakama);
   }

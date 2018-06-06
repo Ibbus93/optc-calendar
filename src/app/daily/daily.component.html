@@ -17,18 +17,10 @@
 
         <div *ngFor="let fn of fortnights$" class="col-md-12 col-sm-12 col-12" id="fortnight-list" style="margin: 2% 0">
 
-          <div class="col-md-2 col-sm-2 col-3" style="float: left; text-align: center">
-            <img [src]="fn.tinyImg" alt="tiny Image" class="img-fluid">
+          <div class="col-lg-2 col-md-3 col-sm-3" style="float: left; text-align: center">
+            <img [src]="fn.tinyImg" alt="tiny Image" class="col-md-12 col-sm-12 col-4 img-fluid ">
 
-            <div *ngIf="fn.data_begin" class="bg-success custom-alert font-weight-bold text-white"> <!-- custom-alert alert-danger -->
-              {{fn.data_begin}}
-            </div>
-
-            <div *ngIf="fn.data_end" class="bg-danger custom-alert font-weight-bold text-white"> <!-- custom-alert alert-danger -->
-              {{fn.data_end}}
-            </div>
-
-            <div [ngSwitch]="fn.bonus" style="margin-bottom: 10px">
+            <div [ngSwitch]="fn.bonus" style="margin-bottom: 10px" class="col-md-12 col-sm-12 col-4 offset-md-0 offset-sm-0 offset-4">
               <div *ngSwitchCase="1">
                 <img src="assets/images/special/dropX2.png" alt="drop x2" class="img-fluid">
               </div>
@@ -43,13 +35,21 @@
               </div>
             </div>
 
+            <div *ngIf="fn.data_begin" class="col-md-12 col-sm-12 col-6 offset-md-0 offset-sm-0 offset-3 bg-success custom-alert font-weight-bold text-white"> <!-- custom-alert alert-danger -->
+              {{fn.data_begin}}
+            </div>
+
+            <div *ngIf="fn.data_end" class="bg-danger custom-alert font-weight-bold text-white col-sm-12 col-6 offset-sm-0 offset-3"> <!-- custom-alert alert-danger -->
+              {{fn.data_end}}
+            </div>
+
             <!--<a [id]="fn.id">-->
               <!--<button class="btn btn-outline-light" (click)="linkingNakama(fn.title)">Nakama Network</button>-->
             <!--</a>-->
 
           </div>
 
-          <div class="col-md-10 col-sm-10 col-9" style="float: right; margin-bottom: 20px">
+          <div class="col-lg-10 col-md-9 col-sm-9 col-12" style="float: right; margin-bottom: 20px">
 
             <h4 class="">{{ fn.title }}</h4>
 
