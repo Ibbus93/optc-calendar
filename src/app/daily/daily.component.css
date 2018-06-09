@@ -28,9 +28,6 @@ hr {
   white-space: normal!important;
 }
 
-#fn-row hr:last-of-type {
-  display: none;
-}
 
 .fa.fa-caret-right:hover, .fa.fa-caret-left:hover {
   color: red;
@@ -44,7 +41,12 @@ hr {
   border-radius: .25rem;
 }
 
-section.container h4, section.container h5 {
+section.container h4 {
+  color: #d2691e;
+  text-shadow: 1px 1px black;
+}
+
+section.container h5 {
   color: #FFA500;
 }
 
@@ -52,7 +54,18 @@ section.container p {
   color: white;
 }
 
-#fn-row {
+#fn-row, #raid-row {
   margin-left: 0!important;
   margin-right: 0!important;
+  display: contents;
+}
+
+.title-padding {
+  padding: 1%;
+}
+
+@media only screen and (max-width: 576px){
+  #fn-row h4, #raid-row h4 {
+    text-align: center;
+  }
 }

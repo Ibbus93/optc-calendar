@@ -6,14 +6,14 @@
       <i class="fa fa-caret-right" (click)="goToDay(1)"></i>
     </h1>
     <h2 id="clock"></h2>
-    <h3> Daily mode</h3>
+    <!--<h3> Daily mode</h3>-->
   </div>
 
-  <section class="container bg-blue" *ngIf="schedule$.length != 0 as result; else noContent">
-    <div class="row">
-      <h3 class="bg-primary" style="padding: 1%;">Fortnight</h3>
+  <section class="container bg-blue" *ngIf="fortnights$.length > 0 || colosseums$.length > 0 || raids$.length > 0; else noContent">
+    <div class="row" *ngIf="fortnights$.length > 0">
+      <h3 class="bg-primary title-padding">Fortnight</h3>
 
-      <div class="row" id="fn-row">
+      <div class="col-12" id="fn-row">
 
         <div *ngFor="let fn of fortnights$" class="col-md-12 col-sm-12 col-12" id="fortnight-list" style="margin: 2% 0">
 
@@ -58,7 +58,7 @@
 
             <h4 class="">{{ fn.title }}</h4>
 
-            <p *ngIf="fn.conditions != 'NULL'; else other_content" class="text-justify">{{ fn.conditions }}</p>
+            <p *ngIf="fn.conditions != 'NULL'" class="text-justify">{{ fn.conditions }}</p>
             <ng-template #other_content>
               <p class="text-justify">No conditions available for this fortnight.</p>
             </ng-template>
@@ -86,25 +86,79 @@
           <!--<hr/>-->
         </div>
       </div>
+    </div> <!-- FORTNIGHT -->
+
+    <div class="row" *ngIf="raids$.length > 0">
+      <h3 class="bg-primary title-padding">Raid</h3>
+
+      <div class="col-12" id="raid-row">
+        <div *ngFor="let raid of raids$" class="col-12">
+          <div class="col-lg-2 col-md-3 col-sm-3" style="float: left; text-align: center">
+            <img [src]="raid.tinyImg" alt="tiny raid Image" class="col-md-12 col-sm-12 col-4 img-fluid ">
+
+            <div [ngSwitch]="raid.bonus" style="margin-bottom: 10px"
+                 class="col-md-12 col-sm-12 col-4 offset-md-0 offset-sm-0 offset-4">
+              <div *ngSwitchCase="1">
+                <img src="assets/images/special/dropX2.png" alt="drop x2" class="img-fluid">
+              </div>
+              <div *ngSwitchCase="2">
+                <img src="assets/images/special/expX2.png" alt="exp x2" class="img-fluid">
+              </div>
+              <div *ngSwitchCase="3">
+                <img src="assets/images/special/stax0.5.png" alt="sta x0.5" class="img-fluid">
+              </div>
+              <div *ngSwitchCase="4">
+                <img src="assets/images/special/berriesx2.png" alt="berries x2" class="img-fluid">
+              </div>
+            </div>
+
+            <div *ngIf="raid.data_begin"
+                 class="col-md-12 col-sm-12 col-6 offset-md-0 offset-sm-0 offset-3 bg-success custom-alert font-weight-bold text-white">
+              <!-- custom-alert alert-danger -->
+              {{raid.data_begin}}
+            </div>
+
+            <div *ngIf="raid.data_end"
+                 class="bg-danger custom-alert font-weight-bold text-white col-sm-12 col-6 offset-sm-0 offset-3">
+              <!-- custom-alert alert-danger -->
+              {{raid.data_end}}
+            </div>
+
+            <!--<a [id]="fn.id">-->
+            <!--<button class="btn btn-outline-light" (click)="linkingNakama(fn.title)">Nakama Network</button>-->
+            <!--</a>-->
+
+          </div>
+          <div class="col-lg-10 col-md-9 col-sm-9 col-12" style="float: right; margin-bottom: 20px">
+
+            <h4 class="">{{ raid.title }}</h4>
+
+            <p *ngIf="raid.conditions != 'NULL'; else other_content" class="text-justify">{{ fn.conditions }}</p>
+
+            <div *ngIf="raid.drops.length > 0" class="col-md-12" style="float: left">
+              <h5>Drops</h5>
+              <div *ngFor="let drop of raid.drops">
+                <a href="http://optc-db.github.io/characters/#/view/{{drop}}" target="_blank">
+                  <img [src]="imageUrl(drop)" alt="drop id {{drop}}" class="inline image-div">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <div class="row">
-      <h3 class="bg-primary">Raid</h3>
-      <div class="col-md-12">
-        <h4>Titolo Raid 1</h4>
-      </div>
-      <div class="col-md-12">
-        <h4>Titolo Raid 2</h4>
-      </div>
-    </div>
+    <div class="row" *ngIf="colosseums$.length > 0">
+      <h3 class="bg-primary title-padding">Colosseum</h3>
+      <div class="col-lg-10 col-md-9 col-sm-9 col-12 offset-lg-2 offset-md-3 offset-sm-3">
+        <h4>Chaos</h4>
 
-    <div class="row">
-      <h3 class="bg-primary">Colosseum</h3>
-      <div class="col-md-12">
-        <h4>Titolo Colosseum 1</h4>
-      </div>
-      <div class="col-md-12">
-        <h4>Titolo Colosseum 2</h4>
+        <div *ngFor="let colo of colosseums$" class="col-12">
+          <a href="http://optc-db.github.io/characters/#/view/{{colo.charact}}" target="_blank">
+            <img [src]="imageUrl(colo.charact)" alt="drop id {{colo.charact}}" class="inline image-div">
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -112,19 +166,20 @@
   <ng-template #noContent>
     <div class="container text-center">
       <!--<div class="row">-->
-        <img src="assets/images/chopper_missing.jpg" alt="Chopper missing" class="" width="200">
-        <div class="">
-          <h4>Nē! Something is missing here!</h4>
-          <p>It seems that either you have choosen a day when no contents have been released yet or the date you have
-            inserted in the URL is not valid<br/>.
-            Please keep using optc-calendar and choose just another day! ;)
-          </p>
-        </div>
+      <img src="assets/images/chopper_missing.jpg" alt="Chopper missing" class="" width="200">
+      <div class="">
+        <h4>Nē! Something is missing here!</h4>
+        <p>It seems that either you have choosen a day when no contents have been released yet or the date you have
+          inserted in the URL is not valid.<br/>
+          Please keep using optc-calendar and choose just another day! ;)
+        </p>
+      </div>
       <!--</div>-->
     </div>
   </ng-template>
 
 </article>
+
 
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>-->
 

@@ -3,14 +3,18 @@ import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/first';
-import { share } from 'rxjs/operators';
+// import { share } from 'rxjs/operators';
 
 import {ModelDate} from './models/ModelDate';
-import {FnSchedule} from './models/Schedules';
+import {Schedule} from './models/Schedules';
 import {Fortnight} from './models/Fortnight';
-import {Observable} from 'rxjs/Observable';
+import {Raid} from './models/Raid';
+import {Colosseum} from './models/Colosseum';
+
+// import {Observable} from 'rxjs/Observable';
 
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import { Colosseum } from './models/Colosseum';
 
 @Component({
   selector: 'app-daily',
@@ -19,8 +23,10 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browse
 })
 export class DailyComponent implements OnInit {
   today: ModelDate;
-  public schedule$: FnSchedule[];
+  public schedule$: Schedule[];
   public fortnights$: Fortnight[];
+  public colosseums$: Colosseum[];
+  public raids$: Raid[];
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router, private _sanitizer: DomSanitizer) {
 
@@ -31,7 +37,6 @@ export class DailyComponent implements OnInit {
     let day   = params.day;
 
     if(year && month && day){
-      console.log(year + ' ' + month + ' ' + day);
       this.startup(new Date(year, (month - 1), day));
     } else {
       this.startup(new Date());
@@ -68,13 +73,18 @@ export class DailyComponent implements OnInit {
   }
 
   startup(date: Date) {
-    console.log('Received');
-    console.log(date);
 
     this.today = new ModelDate(date); // non si sta aggiornando
+
+    this.fortnightSetup();
+    this.raidSetup();
+    this.colosseumSetup();
+  }
+
+  fortnightSetup() {
     this.fortnights$ = [];
 
-    this.http.get<FnSchedule[]>('https://optc-api.herokuapp.com/api/jap_schedule/fn/' + this.today.toString())
+    this.http.get<Schedule[]>('https://optc-api.herokuapp.com/api/jap_schedule/fn/' + this.today.toString())
       .subscribe(schedule => {
         this.schedule$ = schedule;
 
@@ -85,19 +95,89 @@ export class DailyComponent implements OnInit {
               let data_tbegin = new Date(fn.data_begin);
               let data_tend = new Date(fn.data_end);
 
-              if (data_tbegin.getDay() === this.today.getDay() && (this.today.monthN === (data_tbegin.getMonth() + 1))) {
-                fn_data.data_begin = 'Starts at ' + data_tbegin.getHours() + ':' + data_tbegin.getMinutes();
-              }
+              // if (data_tbegin.getDay() === this.today.getDay() && (this.today.monthN === (data_tbegin.getMonth() + 1))) {
+              //   fn_data.data_begin = 'Starts at ' + data_tbegin.getHours() + ':' + data_tbegin.getMinutes();
+              // }
+              //
+              // if (data_tend.getDay() === this.today.getDay() && (this.today.monthN === (data_tend.getMonth() + 1))) {
+              //   fn_data.data_end = 'Ends at ' + data_tend.getHours() + ':' + data_tend.getMinutes();
+              // }
 
-              if (data_tend.getDay() === this.today.getDay() && (this.today.monthN === (data_tend.getMonth() + 1))) {
-                fn_data.data_end = 'Ends at ' + data_tend.getHours() + ':' + data_tend.getMinutes();
-              }
+              fn_data.data_begin = this.startsAt(data_tbegin);
+              fn_data.data_end = this.endsAt(data_tend);
 
               // fn_data.data_begin = fn.data_begin;
               this.fortnights$.push(fn_data);
             });
         });
       });
+  }
+
+  raidSetup() {
+    this.raids$ = [];
+
+    this.http.get<Schedule[]>('https://optc-api.herokuapp.com/api/jap_schedule/raid/' + this.today.toString())
+      .subscribe(schedule => {
+
+        schedule.forEach(raid => {
+          this.http.get<Raid>('https://optc-api.herokuapp.com/api/raid/' + raid.raid)
+            .subscribe(raid_data => {
+
+              raid_data.bonus = raid.bonus;
+
+              let data_tbegin = new Date(raid.data_begin);
+              let data_tend = new Date(raid.data_end);
+
+              raid_data.data_begin = this.startsAt(data_tbegin);
+              raid_data.data_end = this.endsAt(data_tend);
+
+              this.raids$.push(raid_data);
+            });
+        });
+      });
+  }
+
+  colosseumSetup() {
+    this.colosseums$ = [];
+
+    this.http.get<Schedule[]>('https://optc-api.herokuapp.com/api/jap_schedule/colosseum/' + this.today.toString())
+      .subscribe(schedule => {
+        // this.schedule$ = schedule;
+
+        schedule.forEach(colo => {
+          this.http.get<Colosseum>('https://optc-api.herokuapp.com/api/colosseum/' + colo.colosseum)
+            .subscribe(colo_data => {
+
+              console.log(colo_data);
+
+              colo_data.bonus = colo.bonus;
+
+              let data_tbegin = new Date(colo.data_begin);
+              let data_tend = new Date(colo.data_end);
+
+              colo_data.data_begin = this.startsAt(data_tbegin);
+              colo_data.data_end = this.endsAt(data_tend);
+
+              this.colosseums$.push(colo_data);
+            });
+        });
+      });
+  }
+
+  startsAt(data_tbegin): string{
+    if (data_tbegin.getDay() === this.today.getDay() && (this.today.monthN === (data_tbegin.getMonth() + 1))) {
+      return 'Starts at ' + data_tbegin.getHours() + ':' + data_tbegin.getMinutes();
+    }
+
+    return null;
+  }
+
+  endsAt(data_tend): string{
+    if (data_tend.getDay() === this.today.getDay() && (this.today.monthN === (data_tend.getMonth() + 1))) {
+      return 'Ends at ' + data_tend.getHours() + ':' + data_tend.getMinutes();
+    }
+
+    return null;
   }
 
   nakamaFnLink(title: string): SafeUrl {
