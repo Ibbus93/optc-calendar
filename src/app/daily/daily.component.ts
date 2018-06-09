@@ -140,9 +140,14 @@ export class DailyComponent implements OnInit {
       .subscribe(schedule => {
         // this.schedule$ = schedule;
 
+        console.log(schedule);
+
         schedule.forEach(colo => {
+          console.log(colo.colosseum);
           this.http.get<Colosseum>('https://optc-api.herokuapp.com/api/colosseum/' + colo.colosseum)
             .subscribe(colo_data => {
+
+              console.log(colo_data);
 
               colo_data.bonus = colo.bonus;
 

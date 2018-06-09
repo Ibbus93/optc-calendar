@@ -1,4 +1,4 @@
-<article>
+<article class="flex-column">
   <div class="container text-center">
     <h1>
       <i class="fa fa-caret-left" (click)="goToDay(-1)"></i>
@@ -9,7 +9,8 @@
     <!--<h3> Daily mode</h3>-->
   </div>
 
-  <section class="container bg-blue" *ngIf="fortnights$.length > 0 || colosseums$.length > 0 || raids$.length > 0; else noContent">
+  <section class="container bg-blue"
+           *ngIf="fortnights$.length > 0 || colosseums$.length > 0 || raids$.length > 0; else noContent">
     <div class="row" *ngIf="fortnights$.length > 0">
       <h3 class="bg-primary title-padding">Fortnight</h3>
 
@@ -149,15 +150,20 @@
 
     </div>
 
-    <div class="row" *ngIf="colosseums$.length > 0" >
+    <div class="row" *ngIf="colosseums$.length > 0">
       <h3 class="bg-primary title-padding">Colosseum</h3>
-      <div class="col-lg-10 col-md-9 col-sm-9 col-12 offset-lg-2 offset-md-3 offset-sm-3" style="margin-bottom: 5%">
-        <h4>Chaos</h4>
+      <div class="col-12">
+        <div class="col-lg-2 col-md-3 col-sm-3 float-left">
+          <img src="assets/images/colosseum_icon.png" alt="colosseum icon" class="img-fluid">
+        </div>
+        <div class="col-lg-10 col-md-9 col-sm-9 col-12 float-right" style="margin-bottom: 5%">
+          <h4>Chaos</h4>
 
-        <div *ngFor="let colo of colosseums$" class="col-12" >
-          <a href="http://optc-db.github.io/characters/#/view/{{colo.charact}}" target="_blank">
-            <img [src]="imageUrl(colo.charact)" alt="drop id {{colo.charact}}" class="inline image-div">
-          </a>
+          <div *ngFor="let colo of colosseums$" style="padding-left: 15px">
+            <a href="http://optc-db.github.io/characters/#/view/{{colo.charact}}" target="_blank">
+              <img [src]="imageUrl(colo.charact)" alt="drop id {{colo.charact}}" class="inline image-div">
+            </a>
+          </div>
         </div>
       </div>
     </div>
