@@ -23,7 +23,20 @@ export class DailyComponent implements OnInit {
   public fortnights$: Fortnight[];
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router, private _sanitizer: DomSanitizer) {
-    this.startup(new Date());
+
+    let params = this.route.snapshot.params;
+
+    let year  = params.year;
+    let month = params.month;
+    let day   = params.day;
+
+    if(year && month && day){
+      console.log(year + ' ' + month + ' ' + day);
+      this.startup(new Date(year, (month - 1), day));
+    } else {
+      this.startup(new Date());
+    }
+
   }
 
   ngOnInit() {
@@ -55,6 +68,9 @@ export class DailyComponent implements OnInit {
   }
 
   startup(date: Date) {
+    console.log('Received');
+    console.log(date);
+
     this.today = new ModelDate(date); // non si sta aggiornando
     this.fortnights$ = [];
 

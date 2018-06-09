@@ -19,6 +19,10 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
+    path:'daily/:year/:month/:day',
+    component: DailyComponent
+  },
+  {
     path: '**',
     component: NotfoundComponent
   }
