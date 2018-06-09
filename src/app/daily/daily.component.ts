@@ -3,7 +3,6 @@ import {HttpClient} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/first';
-// import { share } from 'rxjs/operators';
 
 import {ModelDate} from './models/ModelDate';
 import {Schedule} from './models/Schedules';
@@ -11,10 +10,7 @@ import {Fortnight} from './models/Fortnight';
 import {Raid} from './models/Raid';
 import {Colosseum} from './models/Colosseum';
 
-// import {Observable} from 'rxjs/Observable';
-
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
-import { Colosseum } from './models/Colosseum';
 
 @Component({
   selector: 'app-daily',
@@ -147,8 +143,6 @@ export class DailyComponent implements OnInit {
         schedule.forEach(colo => {
           this.http.get<Colosseum>('https://optc-api.herokuapp.com/api/colosseum/' + colo.colosseum)
             .subscribe(colo_data => {
-
-              console.log(colo_data);
 
               colo_data.bonus = colo.bonus;
 

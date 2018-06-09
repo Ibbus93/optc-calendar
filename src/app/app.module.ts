@@ -6,6 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { DailyComponent } from './daily/daily.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { FooterComponent } from './footer-comp/footer-comp.component';
 
 const appRoutes: Routes = [
   {
@@ -32,7 +33,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     DailyComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
