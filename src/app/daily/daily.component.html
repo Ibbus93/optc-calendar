@@ -10,7 +10,7 @@
   </div>
 
   <section class="container bg-blue"
-           *ngIf="fortnights$.length > 0 || colosseums$.length > 0 || raids$.length > 0; else noContent">
+           *ngIf="fortnights$.length > 0 || colosseums$.length > 0 || raids$.length > 0 || treasureMaps$ != null; else noContent">
     <div class="row" *ngIf="fortnights$.length > 0">
       <h3 class="bg-primary title-padding">Fortnight</h3>
 
@@ -155,6 +155,18 @@
       <div class="col-12">
         <div class="col-lg-2 col-md-3 col-sm-3 float-left">
           <img src="assets/images/colosseum_icon.png" alt="colosseum icon" class="img-fluid">
+          <div *ngIf="colosseums$[0].data_begin"
+               class="col-md-12 col-sm-12 col-6 offset-md-0 offset-sm-0 offset-3 bg-success custom-alert
+               font-weight-bold text-white text-center">
+            <!-- custom-alert alert-danger -->
+            {{colosseums$[0].data_begin}}
+          </div>
+
+          <div *ngIf="colosseums$[0].data_end"
+               class="bg-danger custom-alert font-weight-bold text-white col-sm-12 col-6 offset-sm-0 offset-3 text-center">
+            <!-- custom-alert alert-danger -->
+            {{colosseums$[0].data_end}}
+          </div>
         </div>
         <div class="col-lg-10 col-md-9 col-sm-9 col-12 float-right" style="margin-bottom: 5%">
           <h4>Chaos</h4>
@@ -164,6 +176,35 @@
               <img [src]="imageUrl(colo.charact)" alt="drop id {{colo.charact}}" class="inline image-div">
             </a>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="treasureMaps$ != null">
+      <h3 class="bg-primary title-padding">Treasure Map</h3>
+      <div class="col-12">
+        <div class="col-lg-2 col-md-3 col-sm-3 float-left">
+          <img src="assets/images/tm_icon.png" alt="tm icon" class="img-fluid">
+          <div *ngIf="treasureMaps$.data_begin"
+               class="col-md-12 col-sm-12 col-6 offset-md-0 offset-sm-0 offset-3 bg-success custom-alert
+               font-weight-bold text-white text-center">
+            <!-- custom-alert alert-danger -->
+            {{treasureMaps$.data_begin}}
+          </div>
+
+          <div *ngIf="treasureMaps$.data_end"
+               class="bg-danger custom-alert font-weight-bold text-white col-sm-12 col-6 offset-sm-0 offset-3 text-center">
+            <!-- custom-alert alert-danger -->
+            {{treasureMaps$.data_end}}
+          </div>
+        </div>
+        <div class="col-lg-10 col-md-9 col-sm-9 col-12 float-right" style="margin-bottom: 5%">
+          <h4>Final Boss</h4>
+
+          <a href="http://optc-db.github.io/characters/#/view/{{treasureMaps$.character}}" target="_blank">
+            <img [src]="imageUrl(treasureMaps$.character)" alt="drop id {{treasureMaps$.character}}"
+                 class="inline image-div" style="margin-left: 15px">
+          </a>
         </div>
       </div>
     </div>

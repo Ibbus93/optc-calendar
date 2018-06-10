@@ -9,6 +9,7 @@ import {Schedule} from './models/Schedules';
 import {Fortnight} from './models/Fortnight';
 import {Raid} from './models/Raid';
 import {Colosseum} from './models/Colosseum';
+import {TreasureMap} from './models/TreasureMap';
 
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 
@@ -17,11 +18,13 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browse
   templateUrl: './daily.component.html',
   styleUrls: ['./daily.component.css']
 })
+
 export class DailyComponent implements OnInit {
   today: ModelDate;
   public schedule$: Schedule[];
   public fortnights$: Fortnight[];
   public colosseums$: Colosseum[];
+  public treasureMaps$: TreasureMap;
   public raids$: Raid[];
 
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router, private _sanitizer: DomSanitizer) {
@@ -75,6 +78,7 @@ export class DailyComponent implements OnInit {
     this.fortnightSetup();
     this.raidSetup();
     this.colosseumSetup();
+    this.treasureMapSetup();
   }
 
   fortnightSetup() {
@@ -138,16 +142,10 @@ export class DailyComponent implements OnInit {
 
     this.http.get<Schedule[]>('https://optc-api.herokuapp.com/api/jap_schedule/colosseum/' + this.today.toString())
       .subscribe(schedule => {
-        // this.schedule$ = schedule;
-
-        console.log(schedule);
 
         schedule.forEach(colo => {
-          console.log(colo.colosseum);
           this.http.get<Colosseum>('https://optc-api.herokuapp.com/api/colosseum/' + colo.colosseum)
             .subscribe(colo_data => {
-
-              console.log(colo_data);
 
               colo_data.bonus = colo.bonus;
 
@@ -158,6 +156,30 @@ export class DailyComponent implements OnInit {
               colo_data.data_end = this.endsAt(data_tend);
 
               this.colosseums$.push(colo_data);
+            });
+        });
+      });
+  }
+
+  treasureMapSetup() {
+    this.treasureMaps$ = null;
+
+    this.http.get<Schedule[]>('https://optc-api.herokuapp.com/api/jap_schedule/tm/' + this.today.toString())
+      .subscribe(schedule => {
+
+        schedule.forEach(tm => {
+          this.http.get<TreasureMap>('https://optc-api.herokuapp.com/api/treasure_map/' + tm.treasure_map)
+            .subscribe(tm_data => {
+
+              tm_data.bonus = tm.bonus;
+
+              let data_tbegin = new Date(tm.data_begin);
+              let data_tend = new Date(tm.data_end);
+
+              tm_data.data_begin = this.startsAt(data_tbegin);
+              tm_data.data_end = this.endsAt(data_tend);
+
+              this.treasureMaps$ = tm_data;
             });
         });
       });
